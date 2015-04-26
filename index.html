@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/cumul8form.css" type="text/css" />
 
     <!-- Not present in the tutorial. Just for basic styling. -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.12.2/react.js"></script>
+    <script src="thirdparty/react.0.12.2.js"></script>
     <!-- <script src="js/react-bootstrap.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.12.2/JSXTransformer.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -37,10 +37,10 @@
         <label for="timeButtons">What type of work is this for?</label>
         <div id="timeButtons" class="btn-group" data-toggle="buttons">
           <label class="btn btn-primary">
-            <input type="radio" name="options" id="option1" autocomplete="off">Time working on visual effects for movie
+            <input type="radio" name="options" id="option1" autocomplete="off"/>Time working on visual effects for movie
           </label>
           <label class="btn btn-primary">
-            <input type="radio" name="options" id="option2" autocomplete="off">Time spent reviewing the work of a junior artist
+            <input type="radio" name="options" id="option2" autocomplete="off"/>Time spent reviewing the work of a junior artist
           </label>      
         </div>
       </div>
@@ -76,6 +76,16 @@
                 <textarea className="form-control" id="cumul8Message" rows="3"></textarea>
               </div>
               <input className="btn btn-default" type="submit" value="Post" />
+
+                 <label for="timeButtons">What type of work is this for?</label>
+                 <div id="timeButtons" className="btn-group" data-toggle="buttons">
+                    <label className="btn btn-primary">
+                      <input type="radio" name="options" id="option1" autocomplete="off" />Time working on visual effects for movie
+                    </label>
+                    <label className="btn btn-primary">
+                      <input type="radio" name="options" id="option2" autocomplete="off"/>Time spent reviewing the work of a junior artist
+                    </label>  
+                 </div>
             </form>
             );
         }
