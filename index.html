@@ -9,9 +9,10 @@
     <!-- Not present in the tutorial. Just for basic styling. -->
     <script src="thirdparty/react.0.12.2.js"></script>
     <!-- <script src="js/react-bootstrap.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.12.2/JSXTransformer.js"></script>
+    <script src="thirdparty/JSXTransformer.0.12.2.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.12.2/JSXTransformer.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js"></script>-->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js"></script>-->
 
     <script type="text/javascript" src="thirdparty/jquery.min.js" charset="utf-8"></script>
     <script type="text/javascript" src="thirdparty/bootstrap.min.js" charset="utf-8"></script>
@@ -29,11 +30,9 @@
     <section id="form">
     <div id="form"></div>
     </section>
-    <footer>
-      <input class="btn btn-default" type="submit" value="Clear">
-      <input class="btn btn-default" type="submit" value="Next">
-
-      <div className="form-group">
+    <footer id="buttons">
+      
+      <<!-- div className="form-group">
         <label for="timeButtons">What type of work is this for?</label>
         <div id="timeButtons" class="btn-group" data-toggle="buttons">
           <label class="btn btn-primary">
@@ -43,7 +42,7 @@
             <input type="radio" name="options" id="option2" autocomplete="off"/>Time spent reviewing the work of a junior artist
           </label>      
         </div>
-      </div>
+      </div> -->
 
     </footer>
   
@@ -67,7 +66,7 @@
             <form>
               <div className="form-group">
                 <label for="cumul8Email">Email</label>
-                <input className="form-control" id="cumul8Email" type="text" value="Hello!" />
+                <input className="form-control" id="cumul8Email" type="email" value="enter email address here" />
 
                 <label for="cumul8Time">Time</label>
                 <input className="form-control" id="cumul8Time" type="text" value="Goodbye!" />
@@ -91,10 +90,34 @@
         }
       });
 
+      
 
+      var SubmitButtons = React.createClass({
+        getInitialState: function() {
+          // this.bread = [1,2,    3, 4,5,6];
+          return {data: []};
+        },
+        render: function() {
+          return (
+              <div className="form-group">
+                <input className="btn btn-default" type="submit" value="Clear"/>
+                <input className="btn btn-default" type="submit" value="Next"/>
+              </div>
+            );
+        }
+      });
+      
+      
       React.render(
         <ExampleForm />,
         document.getElementById('form')
+      );
+
+
+      
+       React.render(
+        <SubmitButtons />,
+        document.getElementById('buttons')
       );
     </script>
   </body>
