@@ -90,6 +90,14 @@
         }
       });
 
+      var ExampleFormResult = React.createClass({
+        render: function() {
+          return (
+            <h2>render render render </h2>
+          );
+        }
+      });
+
       
 
       var SubmitButtons = React.createClass({
@@ -109,7 +117,7 @@
       
       
       React.render(
-        <ExampleForm />,
+        <ExampleFormResult />,
         document.getElementById('form')
       );
 
