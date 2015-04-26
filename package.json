@@ -1,0 +1,9 @@
+{
+  "name": "wills_simple_form",
+  "description": "simple form to test out reasctjs",
+  "version": "0.0.0",
+  "author": "vancouverwill",
+  "dependencies": {
+    "react": "^0.13.2"
+  }
+}

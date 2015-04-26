@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello React</title>
+
+    <link rel="stylesheet" href="thirdparty/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="css/cumul8form.css" type="text/css" />
+
+    <!-- Not present in the tutorial. Just for basic styling. -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.12.2/react.js"></script>
+    <!-- <script src="js/react-bootstrap.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.12.2/JSXTransformer.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js"></script>-->
+
+    <script type="text/javascript" src="thirdparty/jquery.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="thirdparty/bootstrap.min.js" charset="utf-8"></script>
+    
+
+  <!--   <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/bootstrap-theme.css" /> -->
+  </head>
+  <body>
+
+  <!-- <div id="container"> -->
+    <header id="title">
+      <div ></div>
+    </header>
+    <section id="form">
+    <div id="form"></div>
+    </section>
+    <footer>
+      <input class="btn btn-default" type="submit" value="Clear">
+      <input class="btn btn-default" type="submit" value="Next">
+
+      <div className="form-group">
+        <label for="timeButtons">What type of work is this for?</label>
+        <div id="timeButtons" class="btn-group" data-toggle="buttons">
+          <label class="btn btn-primary">
+            <input type="radio" name="options" id="option1" autocomplete="off">Time working on visual effects for movie
+          </label>
+          <label class="btn btn-primary">
+            <input type="radio" name="options" id="option2" autocomplete="off">Time spent reviewing the work of a junior artist
+          </label>      
+        </div>
+      </div>
+
+    </footer>
+  
+     
+    <script type="text/jsx">
+
+     
+
+      React.render(
+        <h1>Submit TimeSheet</h1>,
+        document.getElementById('title')
+      );
+
+      var ExampleForm = React.createClass({
+        getInitialState: function() {
+          // this.bread = [1,2,    3, 4,5,6];
+          return {data: []};
+        },
+        render: function() {
+          return (
+            <form>
+              <div className="form-group">
+                <label for="cumul8Email">Email</label>
+                <input className="form-control" id="cumul8Email" type="text" value="Hello!" />
+
+                <label for="cumul8Time">Time</label>
+                <input className="form-control" id="cumul8Time" type="text" value="Goodbye!" />
+
+                <label for="cumul8Message">Message (Optional)</label>
+                <textarea className="form-control" id="cumul8Message" rows="3"></textarea>
+              </div>
+              <input className="btn btn-default" type="submit" value="Post" />
+            </form>
+            );
+        }
+      });
+
+
+      React.render(
+        <ExampleForm />,
+        document.getElementById('form')
+      );
+    </script>
+  </body>
+</html>
