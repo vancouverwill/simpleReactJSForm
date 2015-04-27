@@ -40,36 +40,43 @@
       // );
 
       var ExampleForm = React.createClass({
-        handleEmailChange: function(event) {
-
-          console.log("****handleEmailChange")
+        handleEmailChange: function() {
+// 
+          // console.log("****handleEmailChange")
           var email= event.target.value;
-          console.log(email);
+          // console.log(email);
           this.props.handleEmailChanges(email);
           // this.setState({value: event.target.value});
           
-          console.log(event.target.value)
+          // console.log(event.target.value)
           // console.log(this.state)
-          console.log(this.props)
+          // console.log(this.props)
           // console.log(Cumul8FormContainer)
           // console.log(event.target)
         },
-        handleTimeChange: function(event) {
+        handleTimeChange: function() {
           // this.setState({value: event.target.value});
           // 
           var time = event.target.value;
-          console.log(time);
+          // console.log(time);
+
+          this.props.handleHourChanges(time);
+          this.props.handleMinuteChanges(time);
+        },
+        handleNextSubmit: function(event) {
+          event.preventDefault();
+          this.props.handleFormSubmitButton()
         },
         render: function() {
           return (
             <div id="form-inputs">
-              <form id="cumul8Form">
+              <form id="cumul8Form"   onSubmit={this.handleNextSubmit} >
                 <div className="form-group">
                   <label for="cumul8Email">Email</label>
                   <input className="form-control" id="cumul8Email" type="email" placeholder="enter email address here" value={this.props.email}  onChange={this.handleEmailChange} title="Please fill out this email field" required/>
 
                   <label for="cumul8Time">Time</label>
-                  <input className="form-control" id="cumul8Time" type="text" placeholder="time 12 hours 5 minutes" value={this.props.hours} onChange={this.handleTimeChange} required title="Please fill out hours and minutes exp (8 hours 5 minutes)" />
+                  <input className="form-control" id="cumul8Time" type="text" placeholder="exp. 12 hours 5 minutes" value={this.props.hours} onChange={this.handleTimeChange}  title="Please fill out hours and minutes exp (8 hours 5 minutes)" pattern="\d{1,2}\s((H|h)ours)\s?(\d{1,2}\s(M|minutes))?" required/>
 
                   <label for="cumul8Message">Message (Optional)</label>
                   <textarea className="form-control" id="cumul8Message" rows="3"></textarea>
@@ -126,11 +133,12 @@
           // this.bread = [1,2,    3, 4,5,6];
           return {data: []};
         },
-        handleNextSubmit: function() {
-          console.log("handleNextSubmit");
-          // document.getElementById("myForm").submit();
-          this.props.handleNextSubmitButton();
-        },
+        // handleNextSubmit: function(e) {
+        //   e.preventDefault();
+        //   console.log("handleNextSubmit");
+        //   // document.getElementById("myForm").submit();
+        //   this.props.handleNextSubmitButton();
+        // },
         handleClearSubmit: function() {
           console.log("handleNextSubmit");
           this.props.handleClearSubmitButton();
@@ -140,7 +148,7 @@
             <div id="form-buttons">
               <div className="form-group">
                 <input className="btn btn-default"  onClick={this.handleClearSubmit} value="Clear"/>
-                <input form="cumul8Form"  className="btn btn-default" type="submit"  onSubmit={this.handleNextSubmit} value="Next"/>
+                <input form="cumul8Form"  className="btn btn-default" type="submit"value="Next"/>
               </div>
             </div>
             );
@@ -185,7 +193,7 @@
         mySample: function() {
           var app = <div id="actionableItems">
               <HeaderTag />
-              <ExampleForm  email={this.state.email} hours={this.state.hours} minutes={this.state.minutes} handleEmailChanges={this.updateEmail} handleHourChanges={this.updateHours} handleMinuteChanges={this.updateMinutes} />
+              <ExampleForm  handleFormSubmitButton={this.handleFormFinished} email={this.state.email} hours={this.state.hours} minutes={this.state.minutes} handleEmailChanges={this.updateEmail} handleHourChanges={this.updateHours} handleMinuteChanges={this.updateMinutes} />
               <SubmitButtons handleNextSubmitButton={this.handleFormFinished} handleClearSubmitButton={this.clearContent}/>
             </div>;
 
@@ -206,8 +214,9 @@
           return this.mySample();
         },
         handleFormFinished: function() {
+          // e.preventDefault();
           console.log("handleFormFinished");
-          console.log(this);
+          // console.log(this);
           React.render(
             <div id="actionableItems">
               <HeaderTag />
@@ -217,6 +226,8 @@
          ,
           document.getElementById('container')
           );
+
+          // return false;
         },
         handleFormReset: function() {
 
@@ -228,8 +239,8 @@
           React.render(
         
           <Cumul8FormContainer />,
-        document.getElementById('container')
-      );
+            document.getElementById('container')
+          );
 
          //  this.clearContent();
 
@@ -245,18 +256,40 @@
          //  );
          },
          updateEmail: function(email) {
-          console.log("Cumul8FormContainer updateEmail");
-          console.log(email);
+          // console.log("Cumul8FormContainer updateEmail");
+          // console.log(email);
 
           // if (this.isMounted()) {
             this.setState({email: email});
             // this.state.email = email;
           // }
 
+          // console.log(this.state);
+         }, 
+         updateHours: function(time) {
+          console.log("Cumul8FormContainer updateEmail");
+          // console.log(email);
+
+          // if (this.isMounted()) {
+            this.setState({hours: time});
+            // this.state.email = email;
+          // }
+
+          console.log(this.state);
+         }, 
+         updateMinutes: function(time) {
+          console.log("Cumul8FormContainer updateEmail");
+          // console.log(email);
+
+          // if (this.isMounted()) {
+            this.setState({minutes: time});
+            // this.state.email = email;
+          // }
+
           console.log(this.state);
          }, 
          clearContent :function() {
-          console.log("clearContent");
+          // console.log("clearContent");
           this.setState({toggleChild: !this.state.toggleChild});
           this.setState({email: null, hours: null, minutes : null});
           // this.state.email = null;
