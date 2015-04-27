@@ -56,7 +56,17 @@
         },
         handleNextSubmit: function(event) {
           event.preventDefault();
-          this.props.handleFormSubmitButton()
+
+          // var temp = this.props.handleFormSubmitButton;
+
+          var that = this;
+
+          jQuery("#loading").show();
+          setTimeout(function(temp){ 
+            jQuery("#loading").hide();
+            that.props.handleFormSubmitButton();
+             }, 1000);
+          
         },
         render: function() {
           return (
@@ -106,7 +116,6 @@
 
       var HeaderTag = React.createClass({
         getInitialState: function() {
-          // this.bread = [1,2,    3, 4,5,6];
           return {data: []};
         },
         render: function() {
@@ -121,16 +130,6 @@
       
 
       var SubmitButtons = React.createClass({
-        getInitialState: function() {
-          // this.bread = [1,2,    3, 4,5,6];
-          return {data: []};
-        },
-        // handleNextSubmit: function(e) {
-        //   e.preventDefault();
-        //   console.log("handleNextSubmit");
-        //   // document.getElementById("myForm").submit();
-        //   this.props.handleNextSubmitButton();
-        // },
         handleClearSubmit: function() {
           console.log("handleNextSubmit");
           this.props.handleClearSubmitButton();
@@ -150,10 +149,6 @@
 
 
       var ReturnButton = React.createClass({
-        getInitialState: function() {
-          // this.bread = [1,2,    3, 4,5,6];
-          return {data: []};
-        },
         handleReturnSubmit: function() {
           console.log("handleReturnSubmit");
           this.props.handleReturnSubmitButton();
@@ -176,14 +171,13 @@
             email: "",
             hours: "",
             minutes: "",
-            toggleChild: true
           };
         },
         mySample: function() {
           var app = <div id="actionableItems">
               <HeaderTag />
               <ExampleForm  handleFormSubmitButton={this.handleFormFinished} email={this.state.email} hours={this.state.hours} minutes={this.state.minutes} handleEmailChanges={this.updateEmail} handleHourChanges={this.updateHours} handleMinuteChanges={this.updateMinutes} />
-              <SubmitButtons handleNextSubmitButton={this.handleFormFinished} handleClearSubmitButton={this.clearContent}/>
+              <SubmitButtons handleClearSubmitButton={this.clearContent}/>
             </div>;
 
           return (
@@ -205,6 +199,8 @@
         handleFormFinished: function() {
           // e.preventDefault();
           console.log("handleFormFinished");
+
+
           // console.log(this);
           React.render(
             <div id="actionableItems">
@@ -237,43 +233,16 @@
          //  );
          },
          updateEmail: function(email) {
-          // console.log("Cumul8FormContainer updateEmail");
-          // console.log(email);
-
-          // if (this.isMounted()) {
             this.setState({email: email});
-            // this.state.email = email;
-          // }
-
-          // console.log(this.state);
          }, 
          updateHours: function(time) {
-          console.log("Cumul8FormContainer updateEmail");
-          // console.log(email);
-
-          // if (this.isMounted()) {
             this.setState({hours: time});
-            // this.state.email = email;
-          // }
-
-          console.log(this.state);
          }, 
          updateMinutes: function(time) {
-          console.log("Cumul8FormContainer updateEmail");
-          // console.log(email);
-
-          // if (this.isMounted()) {
             this.setState({minutes: time});
-            // this.state.email = email;
-          // }
-
-          console.log(this.state);
          }, 
          clearContent :function() {
-          // console.log("clearContent");
-          this.setState({toggleChild: !this.state.toggleChild});
           this.setState({email: null, hours: null, minutes : null});
-          // this.state.email = null;
          }
      });
       
