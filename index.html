@@ -15,7 +15,7 @@
      <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js"></script>-->
 
     <script type="text/javascript" src="thirdparty/jquery.min.js" charset="utf-8"></script>
-    <script type="text/javascript" src="thirdparty/bootstrap.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="thirdparty/bootstrap.js" charset="utf-8"></script>
     
 
   <!--   <link rel="stylesheet" href="css/bootstrap.css" />
@@ -24,77 +24,98 @@
   <body>
 
   <!-- <div id="container"> -->
-    <header id="title">
-      <div ></div>
-    </header>
-    <section id="form">
-    <div id="form"></div>
-    </section>
-    <footer id="buttons">
-      
-      <<!-- div className="form-group">
-        <label for="timeButtons">What type of work is this for?</label>
-        <div id="timeButtons" class="btn-group" data-toggle="buttons">
-          <label class="btn btn-primary">
-            <input type="radio" name="options" id="option1" autocomplete="off"/>Time working on visual effects for movie
-          </label>
-          <label class="btn btn-primary">
-            <input type="radio" name="options" id="option2" autocomplete="off"/>Time spent reviewing the work of a junior artist
-          </label>      
-        </div>
-      </div> -->
-
-    </footer>
+    
+    
+      <div id="container">
+      </div>
   
      
     <script type="text/jsx">
 
      
 
-      React.render(
-        <h1>Submit TimeSheet</h1>,
-        document.getElementById('title')
-      );
+      // React.render(
+      //   <h1>Submit TimeSheet</h1>,
+      //   document.getElementById('title')
+      // );
 
       var ExampleForm = React.createClass({
-        getInitialState: function() {
-          // this.bread = [1,2,    3, 4,5,6];
-          return {data: []};
+        handleEmailChange: function(event) {
+
+          console.log("****handleEmailChange")
+          var email= event.target.value;
+          console.log(email);
+          this.props.handleEmailChanges(email);
+          // this.setState({value: event.target.value});
+          
+          console.log(event.target.value)
+          // console.log(this.state)
+          console.log(this.props)
+          // console.log(Cumul8FormContainer)
+          // console.log(event.target)
+        },
+        handleTimeChange: function(event) {
+          // this.setState({value: event.target.value});
+          // 
+          var time = event.target.value;
+          console.log(time);
         },
         render: function() {
           return (
-            <form>
-              <div className="form-group">
-                <label for="cumul8Email">Email</label>
-                <input className="form-control" id="cumul8Email" type="email" value="enter email address here" />
+            <div id="form-inputs">
+              <form id="cumul8Form">
+                <div className="form-group">
+                  <label for="cumul8Email">Email</label>
+                  <input className="form-control" id="cumul8Email" type="email" placeholder="enter email address here" value={this.props.email}  onChange={this.handleEmailChange} title="Please fill out this email field" required/>
 
-                <label for="cumul8Time">Time</label>
-                <input className="form-control" id="cumul8Time" type="text" value="Goodbye!" />
+                  <label for="cumul8Time">Time</label>
+                  <input className="form-control" id="cumul8Time" type="text" placeholder="time 12 hours 5 minutes" value={this.props.hours} onChange={this.handleTimeChange} required title="Please fill out hours and minutes exp (8 hours 5 minutes)" />
 
-                <label for="cumul8Message">Message (Optional)</label>
-                <textarea className="form-control" id="cumul8Message" rows="3"></textarea>
-              </div>
-              <input className="btn btn-default" type="submit" value="Post" />
+                  <label for="cumul8Message">Message (Optional)</label>
+                  <textarea className="form-control" id="cumul8Message" rows="3"></textarea>
+                </div>
 
-                 <label for="timeButtons">What type of work is this for?</label>
-                 <div id="timeButtons" className="btn-group" data-toggle="buttons">
-                    <label className="btn btn-primary">
-                      <input type="radio" name="options" id="option1" autocomplete="off" />Time working on visual effects for movie
-                    </label>
-                    <label className="btn btn-primary">
-                      <input type="radio" name="options" id="option2" autocomplete="off"/>Time spent reviewing the work of a junior artist
-                    </label>  
-                 </div>
-            </form>
+                   <label for="timeButtons">What type of work is this for?</label>
+                   <div id="timeButtons" className="btn-group" data-toggle="buttons">
+                      <label className="btn btn-primary">
+                        <input type="radio" name="options" id="option1" autocomplete="off" />Time working on visual effects for movie
+                      </label>
+                      <label className="btn btn-primary">
+                        <input type="radio" name="options" id="option2" autocomplete="off"/>Time spent reviewing the work of a junior artist
+                      </label>  
+                   </div>
+              </form>
+            </div>
             );
         }
       });
 
       var ExampleFormResult = React.createClass({
         render: function() {
+          console.log("ExampleFormResult");
+          console.log(this.props);
           return (
-            <h2>render render render </h2>
+            <section id="form">
+              <h2>render render render </h2>
+              <p>Thank you {this.props.email}</p>
+              <p>You have logged </p>
+            </section>
           );
+        }
+      });
+
+
+      var HeaderTag = React.createClass({
+        getInitialState: function() {
+          // this.bread = [1,2,    3, 4,5,6];
+          return {data: []};
+        },
+        render: function() {
+          return (
+              <header id="title">
+                <h1>Submit TimeSheet</h1>
+              </header>
+            );
         }
       });
 
@@ -105,28 +126,162 @@
           // this.bread = [1,2,    3, 4,5,6];
           return {data: []};
         },
+        handleNextSubmit: function() {
+          console.log("handleNextSubmit");
+          // document.getElementById("myForm").submit();
+          this.props.handleNextSubmitButton();
+        },
+        handleClearSubmit: function() {
+          console.log("handleNextSubmit");
+          this.props.handleClearSubmitButton();
+        },
         render: function() {
           return (
+            <div id="form-buttons">
               <div className="form-group">
-                <input className="btn btn-default" type="submit" value="Clear"/>
-                <input className="btn btn-default" type="submit" value="Next"/>
+                <input className="btn btn-default"  onClick={this.handleClearSubmit} value="Clear"/>
+                <input form="cumul8Form"  className="btn btn-default" type="submit"  onSubmit={this.handleNextSubmit} value="Next"/>
               </div>
+            </div>
             );
         }
       });
+
+
+      var ReturnButton = React.createClass({
+        getInitialState: function() {
+          // this.bread = [1,2,    3, 4,5,6];
+          return {data: []};
+        },
+        handleReturnSubmit: function() {
+          console.log("handleReturnSubmit");
+          this.props.handleReturnSubmitButton();
+        },
+        render: function() {
+          return (
+            <footer>
+              <div className="form-group">
+                <input className="btn btn-default" type="submit"  onClick={this.handleReturnSubmit} value="Start Again"/>
+              </div>
+              </footer>
+            );
+        }
+      });
+
+      // var temp = "line";
+      // 
+      
+
+
+      var Cumul8FormContainer = React.createClass({
+        getInitialState: function() {
+          return {
+            email: "",
+            hours: "",
+            minutes: "",
+            toggleChild: true
+          };
+        },
+        mySample: function() {
+          var app = <div id="actionableItems">
+              <HeaderTag />
+              <ExampleForm  email={this.state.email} hours={this.state.hours} minutes={this.state.minutes} handleEmailChanges={this.updateEmail} handleHourChanges={this.updateHours} handleMinuteChanges={this.updateMinutes} />
+              <SubmitButtons handleNextSubmitButton={this.handleFormFinished} handleClearSubmitButton={this.clearContent}/>
+            </div>;
+
+          return (
+            app
+          );
+        },
+        render: function() {
+          // var app = <div id="actionableItems">
+          //     <HeaderTag />
+          //     <ExampleForm  email={this.state.email} hours={this.state.hours} minutes={this.state.minutes} handleEmailChanges={this.updateEmail} handleHourChanges={this.updateHours} handleMinuteChanges={this.updateMinutes} />
+          //     <SubmitButtons handleNextSubmitButton={this.handleFormFinished} handleClearSubmitButton={this.clearContent}/>
+          //   </div>;
+
+          // return (
+          //   app
+          // );
+          return this.mySample();
+        },
+        handleFormFinished: function() {
+          console.log("handleFormFinished");
+          console.log(this);
+          React.render(
+            <div id="actionableItems">
+              <HeaderTag />
+              <ExampleFormResult email={this.state.email} hours={this.state.hours} minutes={this.state.minutes} />
+              <ReturnButton  handleReturnSubmitButton={this.handleFormReset}/>
+            </div>  
+         ,
+          document.getElementById('container')
+          );
+        },
+        handleFormReset: function() {
+
+          console.log("handleFormReset");
+          console.log(this);
+
+          var temp = React.unmountComponentAtNode(document.getElementById('container'));
+
+          React.render(
+        
+          <Cumul8FormContainer />,
+        document.getElementById('container')
+      );
+
+         //  this.clearContent();
+
+         //   React.render(
+         //    <div id="actionableItems">
+         //      <HeaderTag />
+         //      <ExampleForm  email={this.state.email} hours={this.state.hours} minutes={this.state.minutes} handleEmailChanges={this.updateEmail} handleHourChanges={this.updateHours} handleMinuteChanges={this.updateMinutes} />
+         //      <SubmitButtons handleNextSubmitButton={this.handleFormFinished} handleClearSubmitButton={this.clearContent}/>
+         //    </div>
+         //    // this.mySample()
+         // ,
+         //  document.getElementById('container')
+         //  );
+         },
+         updateEmail: function(email) {
+          console.log("Cumul8FormContainer updateEmail");
+          console.log(email);
+
+          // if (this.isMounted()) {
+            this.setState({email: email});
+            // this.state.email = email;
+          // }
+
+          console.log(this.state);
+         }, 
+         clearContent :function() {
+          console.log("clearContent");
+          this.setState({toggleChild: !this.state.toggleChild});
+          this.setState({email: null, hours: null, minutes : null});
+          // this.state.email = null;
+         }
+     });
       
       
       React.render(
-        <ExampleFormResult />,
-        document.getElementById('form')
+        // <ExampleFormResult />,
+        // <ExampleForm />,
+        
+          <Cumul8FormContainer />,
+        document.getElementById('container')
       );
+
+      // if (typeof window !== 'undefined') {
+      //     window.React = React;
+      // }
 
 
       
-       React.render(
-        <SubmitButtons />,
-        document.getElementById('buttons')
-      );
+      /*  React.render(
+      //   ,
+      //   document.getElementById('buttons')
+      // );*/
     </script>
   </body>
 </html>

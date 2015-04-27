@@ -19,13 +19,17 @@ header h1 {
 	margin-top: 0px;
 }
 
-section#form {
+div#form-inputs {
 	background: #C2C2C2;
 	border-top: 2px #313131 solid;
 	padding: 45px 15px 15px;
 }
 
-footer {
+div#form-inputs .btn-primary span {
+	font-size: 90%;
+}
+
+#form-buttons {
 	background: #0054A5;
 	color: white;
 	height: 80px;
@@ -34,3 +38,17 @@ footer {
 	padding-top: 20px;
 	  text-align: center;
 }
+
+#form-buttons .btn-default { 
+	width: 20%;
+	}
+
+@media only screen and (max-width: 480px) {
+
+body {
+	width: 400px;
+}
+
+
+
+	}
