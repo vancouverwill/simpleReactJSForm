@@ -5,6 +5,7 @@
 
     <link rel="stylesheet" href="thirdparty/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="css/cumul8form.css" type="text/css" />
+    <link rel="stylesheet" href="css/spinner.css" type="text/css" />
 
     <!-- Not present in the tutorial. Just for basic styling. -->
     <script src="thirdparty/react.0.12.2.js"></script>
@@ -24,41 +25,31 @@
   <body>
 
   <!-- <div id="container"> -->
-    
-    
+    <div id="loading">
+    <div id="facebookG">
+      <div id="blockG_1" class="facebook_blockG">
+      </div>
+      <div id="blockG_2" class="facebook_blockG">
+      </div>
+      <div id="blockG_3" class="facebook_blockG">
+      </div>
+    </div>
+    </div>
+
       <div id="container">
       </div>
+
   
      
     <script type="text/jsx">
 
-     
-
-      // React.render(
-      //   <h1>Submit TimeSheet</h1>,
-      //   document.getElementById('title')
-      // );
-
       var ExampleForm = React.createClass({
         handleEmailChange: function() {
-// 
-          // console.log("****handleEmailChange")
           var email= event.target.value;
-          // console.log(email);
           this.props.handleEmailChanges(email);
-          // this.setState({value: event.target.value});
-          
-          // console.log(event.target.value)
-          // console.log(this.state)
-          // console.log(this.props)
-          // console.log(Cumul8FormContainer)
-          // console.log(event.target)
         },
         handleTimeChange: function() {
-          // this.setState({value: event.target.value});
-          // 
           var time = event.target.value;
-          // console.log(time);
 
           this.props.handleHourChanges(time);
           this.props.handleMinuteChanges(time);
@@ -76,7 +67,7 @@
                   <input className="form-control" id="cumul8Email" type="email" placeholder="enter email address here" value={this.props.email}  onChange={this.handleEmailChange} title="Please fill out this email field" required/>
 
                   <label for="cumul8Time">Time</label>
-                  <input className="form-control" id="cumul8Time" type="text" placeholder="exp. 12 hours 5 minutes" value={this.props.hours} onChange={this.handleTimeChange}  title="Please fill out hours and minutes exp (8 hours 5 minutes)" pattern="\d{1,2}\s((H|h)ours)\s?(\d{1,2}\s(M|minutes))?" required/>
+                  <input className="form-control" id="cumul8Time" type="text" placeholder="exp. 12 hours 5 minutes" value={this.props.hours} onChange={this.handleTimeChange}  title="Please fill out hours and/or minutes exp (8 hours 5 minutes)" pattern="\s?(\d{1,2}\s((H|h)ours))?\s?(\d{1,2}\s(M|minutes))?" required/>
 
                   <label for="cumul8Message">Message (Optional)</label>
                   <textarea className="form-control" id="cumul8Message" rows="3"></textarea>
@@ -97,19 +88,20 @@
         }
       });
 
+
+
       var ExampleFormResult = React.createClass({
         render: function() {
-          console.log("ExampleFormResult");
-          console.log(this.props);
           return (
-            <section id="form">
-              <h2>render render render </h2>
-              <p>Thank you {this.props.email}</p>
-              <p>You have logged </p>
-            </section>
+            <div id="form-inputs">
+              <br/>
+              <p>Thank you <b>{this.props.email}</b></p>
+              <p>You have logged <b>{this.props.hours}</b></p>
+            </div>
           );
         }
       });
+
 
 
       var HeaderTag = React.createClass({
@@ -156,6 +148,7 @@
       });
 
 
+
       var ReturnButton = React.createClass({
         getInitialState: function() {
           // this.bread = [1,2,    3, 4,5,6];
@@ -167,18 +160,14 @@
         },
         render: function() {
           return (
-            <footer>
+            <div id="form-buttons">
               <div className="form-group">
                 <input className="btn btn-default" type="submit"  onClick={this.handleReturnSubmit} value="Start Again"/>
               </div>
-              </footer>
+            </div>
             );
         }
       });
-
-      // var temp = "line";
-      // 
-      
 
 
       var Cumul8FormContainer = React.createClass({
@@ -226,18 +215,10 @@
          ,
           document.getElementById('container')
           );
-
-          // return false;
         },
         handleFormReset: function() {
-
-          console.log("handleFormReset");
-          console.log(this);
-
           var temp = React.unmountComponentAtNode(document.getElementById('container'));
-
           React.render(
-        
           <Cumul8FormContainer />,
             document.getElementById('container')
           );
