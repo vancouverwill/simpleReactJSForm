@@ -57,14 +57,13 @@
         handleNextSubmit: function(event) {
           event.preventDefault();
 
-          // var temp = this.props.handleFormSubmitButton;
-
           var that = this;
 
           jQuery("#loading").show();
           setTimeout(function(temp){ 
             jQuery("#loading").hide();
             that.props.handleFormSubmitButton();
+            // that.props.handleTitleUpdate();
              }, 1000);
           
         },
@@ -121,7 +120,7 @@
         render: function() {
           return (
               <header id="title">
-                <h1>Submit TimeSheet</h1>
+                <h1>{this.props.title}</h1>
               </header>
             );
         }
@@ -168,6 +167,7 @@
       var Cumul8FormContainer = React.createClass({
         getInitialState: function() {
           return {
+            title: "Submit TimeSheet",
             email: "",
             hours: "",
             minutes: "",
@@ -175,7 +175,7 @@
         },
         mySample: function() {
           var app = <div id="actionableItems">
-              <HeaderTag />
+              <HeaderTag title={this.state.title} />
               <ExampleForm  handleFormSubmitButton={this.handleFormFinished} email={this.state.email} hours={this.state.hours} minutes={this.state.minutes} handleEmailChanges={this.updateEmail} handleHourChanges={this.updateHours} handleMinuteChanges={this.updateMinutes} />
               <SubmitButtons handleClearSubmitButton={this.clearContent}/>
             </div>;
@@ -204,13 +204,16 @@
           // console.log(this);
           React.render(
             <div id="actionableItems">
-              <HeaderTag />
+              <HeaderTag title={"Title Submitted"} />
               <ExampleFormResult email={this.state.email} hours={this.state.hours} minutes={this.state.minutes} />
               <ReturnButton  handleReturnSubmitButton={this.handleFormReset}/>
             </div>  
          ,
           document.getElementById('container')
           );
+        },
+        handleFormTitleUpdate: function() {
+          this.setState({title : "Timesheet Submitted"})
         },
         handleFormReset: function() {
           var temp = React.unmountComponentAtNode(document.getElementById('container'));
