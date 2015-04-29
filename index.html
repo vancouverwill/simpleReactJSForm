@@ -4,27 +4,16 @@
     <title>Hello React</title>
 
     <link rel="stylesheet" href="thirdparty/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="css/cumul8form.css" type="text/css" />
+    <link rel="stylesheet" href="css/simpleform.css" type="text/css" />
     <link rel="stylesheet" href="css/spinner.css" type="text/css" />
 
-    <!-- Not present in the tutorial. Just for basic styling. -->
     <script src="thirdparty/react.0.12.2.js"></script>
-    <!-- <script src="js/react-bootstrap.js"></script> -->
     <script src="thirdparty/JSXTransformer.0.12.2.js"></script>
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.12.2/JSXTransformer.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js"></script>-->
-
     <script type="text/javascript" src="thirdparty/jquery.min.js" charset="utf-8"></script>
-    <script type="text/javascript" src="thirdparty/bootstrap.js" charset="utf-8"></script>
-    
+    <script type="text/javascript" src="thirdparty/bootstrap.min.js" charset="utf-8"></script>
 
-  <!--   <link rel="stylesheet" href="css/bootstrap.css" />
-    <link rel="stylesheet" href="css/bootstrap-theme.css" /> -->
   </head>
   <body>
-
-  <!-- <div id="container"> -->
     <div id="loading">
     <div id="facebookG">
       <div id="blockG_1" class="facebook_blockG">
@@ -36,14 +25,12 @@
     </div>
     </div>
 
-      <div id="container">
-      </div>
+    <div id="container">
+    </div>
 
-  
-     
     <script type="text/jsx">
 
-      var ExampleForm = React.createClass({
+      var ReactJsForm = React.createClass({
         handleEmailChange: function() {
           var email= event.target.value;
           this.props.handleEmailChanges(email);
@@ -70,16 +57,16 @@
         render: function() {
           return (
             <div id="form-inputs">
-              <form id="cumul8Form"   onSubmit={this.handleNextSubmit} >
+              <form id="simpleForm"   onSubmit={this.handleNextSubmit} >
                 <div className="form-group">
-                  <label for="cumul8Email">Email</label>
-                  <input className="form-control" id="cumul8Email" type="email" placeholder="enter email address here" value={this.props.email}  onChange={this.handleEmailChange} title="Please fill out this email field" required/>
+                  <label for="simpleEmail">Email</label>
+                  <input className="form-control" id="simpleEmail" type="email" placeholder="enter email address here" value={this.props.email}  onChange={this.handleEmailChange} title="Please fill out this email field" required/>
 
-                  <label for="cumul8Time">Time</label>
-                  <input className="form-control" id="cumul8Time" type="text" placeholder="exp. 12 hours 5 minutes" value={this.props.hours} onChange={this.handleTimeChange}  title="Please fill out hours and/or minutes exp (8 hours 5 minutes)" pattern="\s?(\d{1,2}\s((H|h)ours))?\s?(\d{1,2}\s(M|minutes))?" required/>
+                  <label for="simpleTime">Time</label>
+                  <input className="form-control" id="simpleTime" type="text" placeholder="exp. 12 hours 5 minutes" value={this.props.hours} onChange={this.handleTimeChange}  title="Please fill out hours and/or minutes exp (8 hours 5 minutes)" pattern="\s?(\d{1,2}\s((H|h)ours))?\s?(\d{1,2}\s(M|minutes))?" required/>
 
-                  <label for="cumul8Message">Message (Optional)</label>
-                  <textarea className="form-control" id="cumul8Message" rows="3"></textarea>
+                  <label for="simpleMessage">Message (Optional)</label>
+                  <textarea className="form-control" id="simpleMessage" rows="3"></textarea>
                 </div>
 
                    <label for="timeButtons">What type of work is this for?</label>
@@ -99,7 +86,7 @@
 
 
 
-      var ExampleFormResult = React.createClass({
+      var ReactJsFormResult = React.createClass({
         render: function() {
           return (
             <div id="form-inputs">
@@ -130,7 +117,6 @@
 
       var SubmitButtons = React.createClass({
         handleClearSubmit: function() {
-          console.log("handleNextSubmit");
           this.props.handleClearSubmitButton();
         },
         render: function() {
@@ -138,7 +124,7 @@
             <div id="form-buttons">
               <div className="form-group">
                 <input className="btn btn-default"  onClick={this.handleClearSubmit} value="Clear"/>
-                <input form="cumul8Form"  className="btn btn-default" type="submit"value="Next"/>
+                <input form="simpleForm"  className="btn btn-default" type="submit"value="Next"/>
               </div>
             </div>
             );
@@ -149,7 +135,6 @@
 
       var ReturnButton = React.createClass({
         handleReturnSubmit: function() {
-          console.log("handleReturnSubmit");
           this.props.handleReturnSubmitButton();
         },
         render: function() {
@@ -164,7 +149,8 @@
       });
 
 
-      var Cumul8FormContainer = React.createClass({
+
+      var SimpleContainer = React.createClass({
         getInitialState: function() {
           return {
             title: "Submit TimeSheet",
@@ -173,10 +159,10 @@
             minutes: "",
           };
         },
-        mySample: function() {
+        render: function() {
           var app = <div id="actionableItems">
               <HeaderTag title={this.state.title} />
-              <ExampleForm  handleFormSubmitButton={this.handleFormFinished} email={this.state.email} hours={this.state.hours} minutes={this.state.minutes} handleEmailChanges={this.updateEmail} handleHourChanges={this.updateHours} handleMinuteChanges={this.updateMinutes} />
+              <ReactJsForm  handleFormSubmitButton={this.handleFormFinished} email={this.state.email} hours={this.state.hours} minutes={this.state.minutes} handleEmailChanges={this.updateEmail} handleHourChanges={this.updateHours} handleMinuteChanges={this.updateMinutes} />
               <SubmitButtons handleClearSubmitButton={this.clearContent}/>
             </div>;
 
@@ -184,28 +170,11 @@
             app
           );
         },
-        render: function() {
-          // var app = <div id="actionableItems">
-          //     <HeaderTag />
-          //     <ExampleForm  email={this.state.email} hours={this.state.hours} minutes={this.state.minutes} handleEmailChanges={this.updateEmail} handleHourChanges={this.updateHours} handleMinuteChanges={this.updateMinutes} />
-          //     <SubmitButtons handleNextSubmitButton={this.handleFormFinished} handleClearSubmitButton={this.clearContent}/>
-          //   </div>;
-
-          // return (
-          //   app
-          // );
-          return this.mySample();
-        },
         handleFormFinished: function() {
-          // e.preventDefault();
-          console.log("handleFormFinished");
-
-
-          // console.log(this);
           React.render(
             <div id="actionableItems">
               <HeaderTag title={"Title Submitted"} />
-              <ExampleFormResult email={this.state.email} hours={this.state.hours} minutes={this.state.minutes} />
+              <ReactJsFormResult email={this.state.email} hours={this.state.hours} minutes={this.state.minutes} />
               <ReturnButton  handleReturnSubmitButton={this.handleFormReset}/>
             </div>  
          ,
@@ -218,22 +187,9 @@
         handleFormReset: function() {
           var temp = React.unmountComponentAtNode(document.getElementById('container'));
           React.render(
-          <Cumul8FormContainer />,
+          <SimpleContainer />,
             document.getElementById('container')
           );
-
-         //  this.clearContent();
-
-         //   React.render(
-         //    <div id="actionableItems">
-         //      <HeaderTag />
-         //      <ExampleForm  email={this.state.email} hours={this.state.hours} minutes={this.state.minutes} handleEmailChanges={this.updateEmail} handleHourChanges={this.updateHours} handleMinuteChanges={this.updateMinutes} />
-         //      <SubmitButtons handleNextSubmitButton={this.handleFormFinished} handleClearSubmitButton={this.clearContent}/>
-         //    </div>
-         //    // this.mySample()
-         // ,
-         //  document.getElementById('container')
-         //  );
          },
          updateEmail: function(email) {
             this.setState({email: email});
@@ -250,24 +206,11 @@
      });
       
       
+
       React.render(
-        // <ExampleFormResult />,
-        // <ExampleForm />,
-        
-          <Cumul8FormContainer />,
+          <SimpleContainer />,
         document.getElementById('container')
       );
-
-      // if (typeof window !== 'undefined') {
-      //     window.React = React;
-      // }
-
-
-      
-      /*  React.render(
-      //   ,
-      //   document.getElementById('buttons')
-      // );*/
     </script>
   </body>
 </html>

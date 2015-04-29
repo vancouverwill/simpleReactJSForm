@@ -23,7 +23,7 @@ header h1 {
 div#form-inputs {
 	background: #C2C2C2;
 	border-top: 2px #313131 solid;
-	padding: 15px 15px 15px;
+	padding: 15px 15px 25px;
 }
 
 div#form-inputs .btn-primary span {
@@ -43,6 +43,11 @@ div#form-inputs .btn-primary span {
 #form-buttons .btn-default {
 	margin: 0px 10px;
 	width: 200px;
+}
+
+label {
+	margin-bottom: 1px;
+  	margin-top: 5px;
 }
 
 
@@ -68,10 +73,19 @@ div#form-inputs .btn-primary span {
   left: 45%;
   position: absolute;
 }
+@media only screen and (max-width: 760px) {
+		body {
+			width: 700px;
+		}
+	}
 
 @media only screen and (max-width: 480px) {
 
 	body {
-		width: 400px;
+		width: 360px;
+	}
+
+	#form-buttons {
+		height: 120px;
 	}
 }
